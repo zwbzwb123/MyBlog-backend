@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwb.blog.mapper.ArticleMapper">
+
+    <select id="selectArticleCells" resultType="article">
+         select a.id as id,a.name as name,summary,count,create_time as createTime, l.name as label
+ from tb_label as l,tb_label_article as la,tb_article as a
+ where a.id = la.article_id and la.label_id = l.id
+ order by createTime desc
+    </select>
+
+    <select id="getArticleById" resultType="article" parameterType="int">
+
+        select a.id as id,a.name as name,summary,content,count,create_time as createTime, l.name as label
+ from tb_label as l,tb_label_article as la,tb_article as a
+ where a.id = la.article_id and la.label_id = l.id and a.id = #{id}
+    </select>
+
+
+    <select id="geAllArticle" resultType="article">
+        select id,name,summary,create_time as createTime from tb_article order by createTime desc
+    </select>
+</mapper>

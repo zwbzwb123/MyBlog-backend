@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwb.blog.mapper.LabelMapper">
+
+    <select id="getLabels" resultType="label">
+        select l.id,l.name,count(1) as count from tb_label as l,tb_label_article as la
+where l.id = la.label_id
+GROUP BY la.label_id
+    </select>
+
+</mapper>
