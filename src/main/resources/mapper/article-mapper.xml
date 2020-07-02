@@ -20,4 +20,8 @@
     <select id="geAllArticle" resultType="article">
         select id,name,summary,create_time as createTime from tb_article order by createTime desc
     </select>
+
+    <update id="updateCount">
+        update tb_article set count = #{count} where id = #{id}
+    </update>
 </mapper>

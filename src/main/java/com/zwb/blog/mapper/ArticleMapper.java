@@ -13,4 +13,6 @@ public interface ArticleMapper {
     Article getArticleById(Integer id);
 
     List<Article> geAllArticle();
+
+    void updateCount(Integer id, Integer count);
 }
