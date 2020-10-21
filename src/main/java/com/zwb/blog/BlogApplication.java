@@ -19,18 +19,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAspectJAutoProxy
 public class BlogApplication {
 
-    @Autowired
-    StringRedisTemplate redisTemplate;
+//    @Autowired
+//    StringRedisTemplate redisTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(BlogApplication.class);
 
     }
 
-    @Bean
-    public ApplicationRunner runner(){
-        return args -> {
-            redisTemplate.opsForValue().set("stu","zwb");
-        };
-    }
+//    @Bean
+//    public ApplicationRunner runner(){
+//        return args -> {
+//            redisTemplate.opsForValue().set("stu","zwb");
+//        };
+//    }
 }

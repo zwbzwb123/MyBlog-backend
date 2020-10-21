@@ -1,28 +1,25 @@
-package com.zwb.blog.config.filter;
+package com.zwb.blog.config;
 
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
-public class RateLimiterFilter implements Filter {
+public class RateLimiterApplicationRunner implements ApplicationRunner {
 
-    private boolean hasLoad = false;
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if (!hasLoad){
-            System.out.println("add flow rule");
-            loadRules();
-            hasLoad = true;
-        }
-        filterChain.doFilter(servletRequest,servletResponse);
+    public void run(ApplicationArguments args) throws Exception {
+        loadRules();
+        System.out.println("load rules");
     }
 
     private void loadRules() {

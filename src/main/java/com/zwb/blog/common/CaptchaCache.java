@@ -4,7 +4,9 @@ import com.zwb.blog.entity.Email;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,11 +38,12 @@ public class CaptchaCache {
 
         @Scheduled(fixedRate = 1000*60)
         public void check(){
-            System.out.println("begin check");
-            for (Map.Entry<String,Email> entry : captchas.entrySet()){
+            Iterator<Map.Entry<String, Email>> iterator = captchas.entrySet().iterator();
+            while (iterator.hasNext()){
+                Map.Entry<String, Email> entry = iterator.next();
                 Date createTime = entry.getValue().getCreateTime();
                 if (System.currentTimeMillis() - createTime.getTime() >= DEFAULT_GAP){
-                    captchas.remove(entry.getKey());
+                    iterator.remove();
                 }
             }
         }

@@ -40,7 +40,6 @@ public class ArticleCountCache {
 
         @Scheduled(fixedRate = 1000*60)
         public void update(){
-            System.out.println("update count");
             count.forEach((id,value) ->
                 mapper.updateCount(id,value)
             );
